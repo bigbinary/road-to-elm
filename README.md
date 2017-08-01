@@ -6,5 +6,9 @@ Examples of Elm code
 [Json decoding](https://github.com/bigbinary/road-to-elm/tree/master/json-decoding)
 
 ```
-elm-package install NoRedInk/elm-decode-pipeline
+elm package install NoRedInk/elm-decode-pipeline
+```
+
+```
+elm package install elm-lang/http -y
 ```
