@@ -53,7 +53,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ Html.form [ onSubmit Submit, action "javascript:void(0)" ]
-            [ input [ name "url", type_ "text", placeholder "Enter url here", onInput ChangeUrl, value model.url ] []
+            [ input [ name "url", type_ "text", onInput ChangeUrl, value model.url ] []
             , button [ type_ "Submit" ] [ text "Submit" ]
             ]
         ]
