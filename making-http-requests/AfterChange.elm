@@ -34,22 +34,22 @@ planetInfo =
             Http.getString url
 
         cmd =
-            Http.send PlanetInMotion request
+            Http.send PlanetMsg request
     in
     cmd
 
 
 type Msg
-    = PlanetInMotion (Result Http.Error String)
+    = PlanetMsg (Result Http.Error String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        PlanetInMotion (Ok value) ->
+        PlanetMsg (Ok value) ->
             ( value, Cmd.none )
 
-        PlanetInMotion (Err error) ->
+        PlanetMsg (Err error) ->
             ( toString error, Cmd.none )
 
 
