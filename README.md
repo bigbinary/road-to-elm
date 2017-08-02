@@ -1,10 +1,20 @@
 # road-to-elm
 Examples of Elm code
 
-[Submitting a form in Elm](https://github.com/bigbinary/road-to-elm/tree/master/subitting-a-form)
+### Submitting a form in Elm
 
-[Json decoding in Elm](https://github.com/bigbinary/road-to-elm/tree/master/json-decoding)
+https://github.com/bigbinary/road-to-elm/tree/master/subitting-a-form
+
+### JSON decoding in Elm
+
+https://github.com/bigbinary/road-to-elm/tree/master/json-decoding
 
 ```
 elm-package install NoRedInk/elm-decode-pipeline
+```
+
+### Making http requests in Elm
+
+```
+elm package install elm-lang/http -y
 ```
