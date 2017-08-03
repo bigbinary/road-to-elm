@@ -18,7 +18,12 @@ elm package install NoRedInk/elm-decode-pipeline
 ```
 
 * [Decoder1](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder1.elm) - decode simple JSON
-
+* [Decoder2](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder2.elm) - decode simple JSON in an array
+* [Decoder3](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder3.elm) - decode simple JSON in an array inside a key
+* [Decoder4](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder4.elm) - decode JSON using `at` and `field`
+* [Decoder5](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder5.elm) - decode JSON when key has null value
+* [Decoder6](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder6.elm) - decode JSON when once key is present and once when key is missing. Decode to default string.
+* [Decoder7](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder7.elm) - decode JSON when once key is present and once when key is missing. Decode to Nothing if key is missing or value is null.
 
 
 ### Making http requests in Elm
