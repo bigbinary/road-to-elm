@@ -14,12 +14,12 @@ main =
 
 
 type alias Model =
-    { url : String }
+    { name : String }
 
 
 model : Model
 model =
-    { url = "" }
+    { name = "" }
 
 
 
@@ -28,19 +28,19 @@ model =
 
 type Msg
     = Submit
-    | ChangeUrl String
+    | ChangeName String
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        ChangeUrl newUrl ->
-            { model | url = newUrl }
+        ChangeName newname ->
+            { model | name = newname }
 
         Submit ->
             let
                 _ =
-                    Debug.log "new url is" model.url
+                    Debug.log "" model.name
             in
             model
 
@@ -52,8 +52,9 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Html.form [ onSubmit Submit, action "javascript:void(0)" ]
-            [ input [ name "url", type_ "text", onInput ChangeUrl, value model.url ] []
+        [ p [] [ text "Please enter your name. Open browser console to see what got submitted." ]
+        , Html.form [ onSubmit Submit, action "javascript:void(0)" ]
+            [ input [ name "name", type_ "text", onInput ChangeName, value model.name ] []
             , button [ type_ "Submit" ] [ text "Submit" ]
             ]
         ]
