@@ -17,7 +17,8 @@ Before running `elm reactor` execute following command.
 elm package install NoRedInk/elm-decode-pipeline
 ```
 
-https://github.com/bigbinary/road-to-elm/tree/master/json-decoding
+* [Decoder1](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder1.elm) - decode simple JSON
+
 
 
 ### Making http requests in Elm
