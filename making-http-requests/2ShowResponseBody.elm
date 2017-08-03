@@ -7,7 +7,7 @@ import Http
 
 
 main =
-    Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
+    Html.program { init = init, view = view, update = update, subscriptions = \_ -> Sub.none }
 
 
 type alias Model =
@@ -28,7 +28,7 @@ planetInfo : Cmd Msg
 planetInfo =
     let
         url =
-            "http://swapi.co/api/planets/1"
+            "http://swapi.co/api/people/1"
 
         request =
             Http.getString url
@@ -56,8 +56,3 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [] [ text model ]
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none

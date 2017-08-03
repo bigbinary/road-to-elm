@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Baseline exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -15,7 +15,7 @@ type alias Model =
 
 model : Model
 model =
-    "Finding planet ...."
+    "Finding ...."
 
 
 type Msg
