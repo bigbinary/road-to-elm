@@ -6,7 +6,7 @@ import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
 
-json5a =
+jsonA =
     """
 {
   "github": {
@@ -22,7 +22,7 @@ json5a =
 """
 
 
-json5b =
+jsonB =
     """
 {
   "github": {
@@ -69,10 +69,10 @@ decodedValue json =
 
 main =
     div []
-        [ p [] [ text "----json5a ----- github id is present" ]
-        , p [] [ text json5a ]
-        , p [] [ text (decodedValue json5a) ]
-        , p [] [ text "----json5b----- github id is null" ]
-        , p [] [ text json5b ]
-        , p [] [ text (decodedValue json5b) ]
+        [ p [] [ text "----jsonA ----- github id is present" ]
+        , p [] [ text jsonA ]
+        , p [] [ text (decodedValue jsonA) ]
+        , p [] [ text "----jsonB----- github id is null" ]
+        , p [] [ text jsonB ]
+        , p [] [ text (decodedValue jsonB) ]
         ]
