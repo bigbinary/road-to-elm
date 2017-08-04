@@ -6,26 +6,76 @@ import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
 
-json8 =
+json =
     """
-{
-  "github": {
-    "users": [
-      {
-        "name": "Jack",
-        "age": 24,
-        "githubid": "evancz"
-      }
-    ]
-  }
-}
-"""
+    {
+        "title": "Product",
+        "attributes": {
+            "format": {
+                "id": "format",
+                "title": "Format",
+                "options": {
+                    "a4": {
+                        "title": "Flyer A4",
+                        "subtitle": "210 × 297mm",
+                        "image": "path/to/img.jpg"
+
+                    },
+                    "a3": {
+                        "title": "Flyer A3",
+                        "subtitle": "297 × 420mm",
+                        "image": "path/to/img.jpg"
+
+                    }
+                }
+            },
+            "printing": {
+                "id": "printing1",
+                "title": "Printing2",
+                "options": {
+                    "4/0": {
+                        "title": "One-sided full color (4/0)",
+                        "subtitle": "Some text here"
+                    },
+                    "4/4": {
+                        "title": "Two-sided full color (4/4)",
+                        "subtitle": "Some text here"
+                    }
+                }
+            },
+            "material": {
+                "id": "material",
+                "title": "Material",
+                "options": {
+                    "300g": {
+                        "title": "300 grams",
+                        "subtitle": "Some text here"
+                    },
+                    "150g": {
+                        "title": "150 grams",
+                        "subtitle": "Some text here"
+                    }
+                }
+            }
+
+        }
+    }
+    """
 
 
-type alias User =
-    { name : String
-    , age : Int
-    , githubid : Maybe String
+type alias Option =
+    { attribute : String
+    , id : String
+    , title : String
+    , subtitle : String
+    , image : Maybe String
+    }
+
+
+type alias Opt =
+    { title : String
+    , subtitle : String
+    , image : Maybe String
     }
 
 
