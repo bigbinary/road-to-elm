@@ -14,7 +14,7 @@ https://github.com/bigbinary/road-to-elm/tree/master/subitting-a-form
 Before running `elm reactor` execute following command.
 
 ```
-elm package install NoRedInk/elm-decode-pipeline
+elm package install NoRedInk/elm-decode-pipeline -y
 ```
 
 * [Decoder1](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder1.elm) - decode simple JSON
