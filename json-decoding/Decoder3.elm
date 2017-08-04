@@ -2,8 +2,8 @@ module Decoder3 exposing (..)
 
 import Html exposing (Html, button, div, p, text)
 import Html.Events exposing (onClick)
-import Json.Decode exposing (Decoder, at, field, float, int, list, nullable, string)
-import Json.Decode.Pipeline exposing (decode, hardcoded, optional, required)
+import Json.Decode as JD
+import Json.Decode.Pipeline as JP
 
 
 json =
@@ -25,18 +25,18 @@ type alias User =
     }
 
 
-userDecoder : Decoder User
+userDecoder : JD.Decoder User
 userDecoder =
-    decode User
-        |> required "name" string
-        |> required "age" int
+    JP.decode User
+        |> JP.required "name" JD.string
+        |> JP.required "age" JD.int
 
 
 decodedValue : String
 decodedValue =
     let
         result =
-            Json.Decode.decodeString (field "users" (list userDecoder)) json
+            JD.decodeString (JD.field "users" (JD.list userDecoder)) json
     in
     case result of
         Ok value ->

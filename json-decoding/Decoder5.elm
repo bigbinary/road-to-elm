@@ -2,8 +2,8 @@ module Decoder5 exposing (..)
 
 import Html exposing (Html, button, div, p, text)
 import Html.Events exposing (onClick)
-import Json.Decode exposing (Decoder, at, field, float, int, list, nullable, string)
-import Json.Decode.Pipeline exposing (decode, hardcoded, optional, required)
+import Json.Decode as JD
+import Json.Decode.Pipeline as JP
 
 
 json5a =
@@ -45,19 +45,19 @@ type alias User =
     }
 
 
-userDecoder : Decoder User
+userDecoder : JD.Decoder User
 userDecoder =
-    decode User
-        |> required "name" string
-        |> required "age" int
-        |> required "githubid" (nullable string)
+    JP.decode User
+        |> JP.required "name" JD.string
+        |> JP.required "age" JD.int
+        |> JP.required "githubid" (JD.nullable JD.string)
 
 
 decodedValue : String -> String
 decodedValue json =
     let
         result =
-            Json.Decode.decodeString (at [ "github", "users" ] (list userDecoder)) json
+            JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
     in
     case result of
         Ok value ->

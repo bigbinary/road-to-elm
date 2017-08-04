@@ -2,8 +2,8 @@ module Decoder7 exposing (..)
 
 import Html exposing (Html, button, div, p, text)
 import Html.Events exposing (onClick)
-import Json.Decode exposing (Decoder, at, field, float, int, list, null, nullable, oneOf, string)
-import Json.Decode.Pipeline exposing (decode, hardcoded, optional, required)
+import Json.Decode as JD
+import Json.Decode.Pipeline as JP
 
 
 json6a =
@@ -60,20 +60,20 @@ type alias User =
     }
 
 
-userDecoder : Decoder User
+userDecoder : JD.Decoder User
 userDecoder =
-    decode User
-        |> required "name" string
-        |> required "age" int
-        --|> optional "githubid" (nullable string) (Just "")
-        |> optional "githubid" (nullable string) Nothing
+    JP.decode User
+        |> JP.required "name" JD.string
+        |> JP.required "age" JD.int
+        --|> JP.optional "githubid" (JD.nullable JD.string) (Just "")
+        |> JP.optional "githubid" (JD.nullable JD.string) Nothing
 
 
 decodedValue : String -> String
 decodedValue json =
     let
         result =
-            Json.Decode.decodeString (at [ "github", "users" ] (list userDecoder)) json
+            JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
     in
     case result of
         Ok value ->
