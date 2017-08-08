@@ -6,60 +6,68 @@ import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
 
+--https://ellie-app.com/3VjdtsVDqYta1/4
+--Ok ([
+--{ attribute = "format", id = "a3", title = "Flyer A3", subtitle = "297 × 420mm", image = Just "path/to/img.jpg" },
+--{ attribute = "format", id = "a4", title = "Flyer A4", subtitle = "210 × 297mm", image = Just "path/to/img.jpg" },
+--{ attribute = "material", id = "150g", title = "150 grams", subtitle = "Some text here", image = Nothing },
+--{ attribute = "material", id = "300g", title = "300 grams", subtitle = "Some text here", image = Nothing },
+--{ attribute = "printing", id = "4/0", title = "One-sided full color (4/0)", subtitle = "Some text here", image = Nothing },
+--{ attribute = "printing", id = "4/4", title = "Two-sided full color (4/4)", subtitle = "Some text here", image = Nothing }
+--])
+
+
 json =
     """
-    {
-        "title": "Product",
-        "attributes": {
-            "format": {
-                "id": "format",
-                "title": "Format",
-                "options": {
-                    "a4": {
-                        "title": "Flyer A4",
-                        "subtitle": "210 × 297mm",
-                        "image": "path/to/img.jpg"
-
-                    },
-                    "a3": {
-                        "title": "Flyer A3",
-                        "subtitle": "297 × 420mm",
-                        "image": "path/to/img.jpg"
-
-                    }
-                }
-            },
-            "printing": {
-                "id": "printing1",
-                "title": "Printing2",
-                "options": {
-                    "4/0": {
-                        "title": "One-sided full color (4/0)",
-                        "subtitle": "Some text here"
-                    },
-                    "4/4": {
-                        "title": "Two-sided full color (4/4)",
-                        "subtitle": "Some text here"
-                    }
-                }
-            },
-            "material": {
-                "id": "material",
-                "title": "Material",
-                "options": {
-                    "300g": {
-                        "title": "300 grams",
-                        "subtitle": "Some text here"
-                    },
-                    "150g": {
-                        "title": "150 grams",
-                        "subtitle": "Some text here"
-                    }
-                }
-            }
-
+{
+  "title": "Product",
+  "attributes": {
+    "format": {
+      "id": "format",
+      "title": "Format",
+      "options": {
+        "a4": {
+          "title": "Flyer A4",
+          "subtitle": "210 × 297mm",
+          "image": "path/to/img.jpg"
+        },
+        "a3": {
+          "title": "Flyer A3",
+          "subtitle": "297 × 420mm",
+          "image": "path/to/img.jpg"
         }
+      }
+    },
+    "printing": {
+      "id": "printing1",
+      "title": "Printing2",
+      "options": {
+        "4/0": {
+          "title": "One-sided full color (4/0)",
+          "subtitle": "Some text here"
+        },
+        "4/4": {
+          "title": "Two-sided full color (4/4)",
+          "subtitle": "Some text here"
+        }
+      }
+    },
+    "material": {
+      "id": "material",
+      "title": "Material",
+      "options": {
+        "300g": {
+          "title": "300 grams",
+          "subtitle": "Some text here"
+        },
+        "150g": {
+          "title": "150 grams",
+          "subtitle": "Some text here"
+        }
+      }
     }
+  }
+}
     """
 
 

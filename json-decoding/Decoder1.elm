@@ -9,7 +9,7 @@ import Json.Decode.Pipeline as JP
 json =
     """
 {
-  "name": "Jack",
+  "name": "John",
   "age": 24
 }
 """
@@ -32,7 +32,7 @@ decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString userDecoder json
+            JD.decodeString (JD.keyValuePairs JD.int) json
     in
     case result of
         Ok value ->
