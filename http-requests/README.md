@@ -8,7 +8,6 @@ Make a HTTP request.
 Render actual body of the response if requests succeeds.
 Otherwise, render the error message.
 
-
 #### 2. [Show full response](2-ShowFullResponse.elm)
 
 Make a HTTP request.

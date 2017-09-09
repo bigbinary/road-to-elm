@@ -1,7 +1,6 @@
 module Decoder5 exposing (..)
 
-import Html exposing (Html, button, div, p, text)
-import Html.Events exposing (onClick)
+import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
@@ -59,20 +58,20 @@ decodedValue json =
         result =
             JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
     in
-    case result of
-        Ok value ->
-            toString value
+        case result of
+            Ok value ->
+                toString value
 
-        Err error ->
-            error
+            Err error ->
+                error
 
 
 main =
     div []
-        [ p [] [ text "----jsonA ----- github id is present" ]
-        , p [] [ text jsonA ]
-        , p [] [ text (decodedValue jsonA) ]
-        , p [] [ text "----jsonB----- github id is null" ]
-        , p [] [ text jsonB ]
-        , p [] [ text (decodedValue jsonB) ]
+        [ h2 [] [ text "jsonA :: github id is present" ]
+        , pre [] [ text jsonA ]
+        , pre [] [ text (decodedValue jsonA) ]
+        , h2 [] [ text "jsonB :: github id is null" ]
+        , pre [] [ text jsonB ]
+        , pre [] [ text (decodedValue jsonB) ]
         ]

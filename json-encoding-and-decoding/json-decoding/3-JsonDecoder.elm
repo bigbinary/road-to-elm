@@ -1,7 +1,6 @@
 module Decoder3 exposing (..)
 
-import Html exposing (Html, button, div, p, text)
-import Html.Events exposing (onClick)
+import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
@@ -38,18 +37,18 @@ decodedValue =
         result =
             JD.decodeString (JD.field "users" (JD.list userDecoder)) json
     in
-    case result of
-        Ok value ->
-            toString value
+        case result of
+            Ok value ->
+                toString value
 
-        Err error ->
-            error
+            Err error ->
+                error
 
 
 main =
     div []
-        [ p [] [ text "----JSON input -----" ]
-        , p [] [ text json ]
-        , p [] [ text "----Decoded value -----" ]
-        , p [] [ text decodedValue ]
+        [ h2 [] [ text "JSON Input" ]
+        , pre [] [ text json ]
+        , h2 [] [ text "Decoded Value" ]
+        , pre [] [ text decodedValue ]
         ]

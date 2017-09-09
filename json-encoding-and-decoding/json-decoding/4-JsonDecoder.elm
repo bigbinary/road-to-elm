@@ -1,7 +1,6 @@
 module Decoder4 exposing (..)
 
-import Html exposing (Html, button, div, p, text)
-import Html.Events exposing (onClick)
+import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
@@ -40,12 +39,12 @@ decodedValueUsingAt =
         result =
             JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
     in
-    case result of
-        Ok value ->
-            toString value
+        case result of
+            Ok value ->
+                toString value
 
-        Err error ->
-            error
+            Err error ->
+                error
 
 
 decodedValueUsingField : String
@@ -54,20 +53,20 @@ decodedValueUsingField =
         result =
             JD.decodeString (JD.field "github" (JD.field "users" (JD.list userDecoder))) json
     in
-    case result of
-        Ok value ->
-            toString value
+        case result of
+            Ok value ->
+                toString value
 
-        Err error ->
-            error
+            Err error ->
+                error
 
 
 main =
     div []
-        [ p [] [ text "----JSON input -----" ]
-        , p [] [ text json ]
-        , p [] [ text "----Decoded value using at -----" ]
-        , p [] [ text decodedValueUsingAt ]
-        , p [] [ text "----Decoded value using field -----" ]
-        , p [] [ text decodedValueUsingField ]
+        [ h2 [] [ text "JSON Input" ]
+        , pre [] [ text json ]
+        , h2 [] [ text "Decoded Value using `at`" ]
+        , pre [] [ text decodedValueUsingAt ]
+        , h2 [] [ text "Decoded Value using `field`" ]
+        , pre [] [ text decodedValueUsingField ]
         ]

@@ -1,13 +1,16 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Http
 
 
 main =
-    Html.program { init = init, view = view, update = update, subscriptions = \_ -> Sub.none }
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = \_ -> Sub.none
+        }
 
 
 type alias Model =
@@ -16,7 +19,7 @@ type alias Model =
 
 model : Model
 model =
-    "Please wait ...."
+    "Please wait...."
 
 
 init : ( Model, Cmd Msg )
@@ -36,7 +39,7 @@ planetInfo =
         cmd =
             Http.send PlanetMsg request
     in
-    cmd
+        cmd
 
 
 type Msg
@@ -55,4 +58,4 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [] [ text model ]
+    pre [] [ text model ]

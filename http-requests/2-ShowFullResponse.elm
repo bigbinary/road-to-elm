@@ -1,13 +1,16 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Http
 
 
 main =
-    Html.program { init = init, view = view, update = update, subscriptions = \_ -> Sub.none }
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = \_ -> Sub.none
+        }
 
 
 type alias Model =
@@ -36,7 +39,7 @@ planetInfo =
         cmd =
             Http.send PlanetMsg (buildRequest url)
     in
-    cmd
+        cmd
 
 
 buildRequest : String -> Http.Request String
@@ -74,4 +77,4 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [] [ text model ]
+    pre [] [ text model ]
