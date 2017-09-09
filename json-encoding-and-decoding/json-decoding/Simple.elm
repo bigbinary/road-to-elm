@@ -92,13 +92,15 @@ userDecoder =
 
 
 
--- The 'decodedValue' function is just a normal function which we call in our
--- "main" view function below to display the decoded JSON string.
---
--- We use 'Json.Decode.decodeString' function, which accepts
--- a decoder and the string need to be decoded (i.e. a JSON string).
--- 'decodeString' function returns a 'Result' off which we can obtain the
--- decoded value which can either be of type 'User' or an error.
+{-
+   The 'decodedValue' function is just a normal function which we call in our
+   "main" view function below to display the decoded JSON string.
+
+   We use 'Json.Decode.decodeString' function, which accepts
+   a decoder and the string need to be decoded (i.e. a JSON string).
+   'decodeString' function returns a 'Result' off which we can obtain the
+   decoded value which can either be of type 'User' or an error.
+-}
 
 
 decodedValue : String
