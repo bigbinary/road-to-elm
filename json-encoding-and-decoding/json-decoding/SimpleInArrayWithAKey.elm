@@ -23,7 +23,7 @@ json =
 
 
 
--- MODEL
+-- TYPES
 
 
 type alias User =

@@ -59,7 +59,7 @@ jsonC =
 
 
 
--- MODEL
+-- TYPES
 
 
 type alias User =
