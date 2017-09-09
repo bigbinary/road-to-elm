@@ -1,4 +1,4 @@
-module SimpleWithPipeline exposing (..)
+module Main exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
