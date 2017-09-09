@@ -5,20 +5,20 @@ which we encountered while learning Elm.
 
 ## Setup and usage
 
-If you have cloned this repository, you can use `elm reactor` command
-to run any file having `.elm` extension.
-Navigate to any directory and run `elm reactor` command.
-Elm reactor will start a local server listing the `.elm` files in that directory.
-Click on any file to see it in action.
+1. Clone this repository and navigate inside it.
 
-Although `elm reactor` will download the necessary packages on its own
-if not found locally,
-it is good idea to install them explicitly
-with the following command from the root directory.
+2. Install required Elm packages using following command.
 
-```
-elm package install
-```
+    ```
+    elm package install
+    ```
+
+3. To see each example in action, run `elm reactor` command.
+Elm reactor will start a local server listing all the files
+in this repository in browser.
+Click on any file having extension `.elm` to execute it
+and see the output in the browser.
+
 
 ## Table of contents
 
