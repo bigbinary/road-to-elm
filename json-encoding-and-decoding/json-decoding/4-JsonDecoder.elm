@@ -5,6 +5,10 @@ import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
 
+-- INPUT
+
+
+json : String
 json =
     """
 {
@@ -20,10 +24,18 @@ json =
     """
 
 
+
+-- MODEL
+
+
 type alias User =
     { name : String
     , age : Int
     }
+
+
+
+-- DECODERS
 
 
 userDecoder : JD.Decoder User
@@ -61,6 +73,11 @@ decodedValueUsingField =
                 error
 
 
+
+-- VIEW
+
+
+main : Html msg
 main =
     div []
         [ h2 [] [ text "JSON Input" ]

@@ -5,6 +5,10 @@ import Json.Decode as JD
 import Json.Decode.Pipeline as JP
 
 
+-- INPUT
+
+
+jsonA : String
 jsonA =
     """
 {
@@ -21,6 +25,7 @@ jsonA =
 """
 
 
+jsonB : String
 jsonB =
     """
 {
@@ -36,6 +41,7 @@ jsonB =
 """
 
 
+jsonC : String
 jsonC =
     """
 {
@@ -52,11 +58,19 @@ jsonC =
 """
 
 
+
+-- MODEL
+
+
 type alias User =
     { name : String
     , age : Int
     , githubid : String
     }
+
+
+
+-- DECODERS
 
 
 userDecoder : JD.Decoder User
@@ -81,6 +95,11 @@ decodedValue json =
                 error
 
 
+
+-- VIEW
+
+
+main : Html msg
 main =
     div []
         [ h2 [] [ text "jsonA :: github id is present in json" ]

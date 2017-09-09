@@ -5,11 +5,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 
-main =
-    Html.beginnerProgram { model = model, view = view, update = update }
-
-
-
 -- MODEL
 
 
@@ -58,3 +53,12 @@ view model =
             , button [ type_ "Submit" ] [ text "Submit" ]
             ]
         ]
+
+
+
+-- MAIN
+
+
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram { model = model, view = view, update = update }

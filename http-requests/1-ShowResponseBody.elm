@@ -4,13 +4,7 @@ import Html exposing (..)
 import Http
 
 
-main =
-    Html.program
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = \_ -> Sub.none
-        }
+-- MODEL
 
 
 type alias Model =
@@ -42,11 +36,15 @@ planetInfo =
         cmd
 
 
+
+-- UPDATE
+
+
 type Msg
     = PlanetMsg (Result Http.Error String)
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( String, Cmd msg )
 update msg model =
     case msg of
         PlanetMsg (Ok value) ->
@@ -56,6 +54,24 @@ update msg model =
             ( toString error, Cmd.none )
 
 
+
+-- VIEW
+
+
 view : Model -> Html Msg
 view model =
     pre [] [ text model ]
+
+
+
+-- MAIN
+
+
+main : Program Never Model Msg
+main =
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = \_ -> Sub.none
+        }
