@@ -2,13 +2,13 @@
 
 ### Examples
 
-#### 1. [Show response body](1-ShowResponseBody.elm)
+1\. [Show response body](ShowResponseBody.elm)
 
 Make a HTTP request.
 Render actual body of the response if requests succeeds.
 Otherwise, render the error message.
 
-#### 2. [Show full response](2-ShowFullResponse.elm)
+2\. [Show full response](ShowFullResponse.elm)
 
 Make a HTTP request.
 Render the whole response containing status, response headers and body

@@ -1,4 +1,4 @@
-module SubmitingAForm exposing (..)
+module SubmitForm exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

@@ -2,7 +2,7 @@
 
 ### Examples
 
-#### 1. [Submitting forms](1-SubmitForm.elm)
+1\. [Submitting forms](SubmitForm.elm)
 
 Render a form.
 On submission, prevent default behavior

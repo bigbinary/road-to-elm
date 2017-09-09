@@ -1,4 +1,4 @@
-module Decoder5 exposing (..)
+module WhenKeyHasNullValue exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
@@ -8,20 +8,38 @@ import Json.Decode.Pipeline as JP
 -- INPUT
 
 
-json : String
-json =
+jsonA : String
+jsonA =
     """
 {
   "github": {
     "users": [
       {
         "name": "Jack",
-        "age": 24
+        "age": 24,
+        "githubid": "evancz"
       }
     ]
   }
 }
+"""
+
+
+jsonB : String
+jsonB =
     """
+{
+  "github": {
+    "users": [
+      {
+        "name": "Jack",
+        "age": 24,
+        "githubid": null
+      }
+    ]
+  }
+}
+"""
 
 
 
@@ -31,6 +49,7 @@ json =
 type alias User =
     { name : String
     , age : Int
+    , githubid : Maybe String
     }
 
 
@@ -43,27 +62,14 @@ userDecoder =
     JP.decode User
         |> JP.required "name" JD.string
         |> JP.required "age" JD.int
+        |> JP.required "githubid" (JD.nullable JD.string)
 
 
-decodedValueUsingAt : String
-decodedValueUsingAt =
+decodedValue : String -> String
+decodedValue json =
     let
         result =
             JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
-    in
-        case result of
-            Ok value ->
-                toString value
-
-            Err error ->
-                error
-
-
-decodedValueUsingField : String
-decodedValueUsingField =
-    let
-        result =
-            JD.decodeString (JD.field "github" (JD.field "users" (JD.list userDecoder))) json
     in
         case result of
             Ok value ->
@@ -80,10 +86,10 @@ decodedValueUsingField =
 main : Html msg
 main =
     div []
-        [ h2 [] [ text "JSON Input" ]
-        , pre [] [ text json ]
-        , h2 [] [ text "Decoded Value using `at`" ]
-        , pre [] [ text decodedValueUsingAt ]
-        , h2 [] [ text "Decoded Value using `field`" ]
-        , pre [] [ text decodedValueUsingField ]
+        [ h2 [] [ text "jsonA :: github id is present" ]
+        , pre [] [ text jsonA ]
+        , pre [] [ text (decodedValue jsonA) ]
+        , h2 [] [ text "jsonB :: github id is null" ]
+        , pre [] [ text jsonB ]
+        , pre [] [ text (decodedValue jsonB) ]
         ]

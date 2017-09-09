@@ -1,8 +1,7 @@
-module Decoder4 exposing (..)
+module Simple exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
-import Json.Decode.Pipeline as JP
 
 
 -- INPUT
@@ -12,12 +11,10 @@ json : String
 json =
     """
 {
-  "users": [
-    {
-      "name": "Jack",
-      "age": 24
-    }
-  ]
+  "name": "Jack",
+  "age": 24,
+  "city": "New York",
+  "married": true
 }
 """
 
@@ -29,6 +26,8 @@ json =
 type alias User =
     { name : String
     , age : Int
+    , city : String
+    , married : Bool
     }
 
 
@@ -38,16 +37,18 @@ type alias User =
 
 userDecoder : JD.Decoder User
 userDecoder =
-    JP.decode User
-        |> JP.required "name" JD.string
-        |> JP.required "age" JD.int
+    JD.map4 User
+        (JD.field "name" JD.string)
+        (JD.field "age" JD.int)
+        (JD.field "city" JD.string)
+        (JD.field "married" JD.bool)
 
 
 decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString (JD.field "users" (JD.list userDecoder)) json
+            JD.decodeString userDecoder json
     in
         case result of
             Ok value ->

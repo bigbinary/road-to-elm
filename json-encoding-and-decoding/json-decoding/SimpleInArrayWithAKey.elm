@@ -1,4 +1,4 @@
-module Decoder3 exposing (..)
+module SimpleInArrayWithAKey exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
@@ -11,12 +11,14 @@ import Json.Decode.Pipeline as JP
 json : String
 json =
     """
-[
-  {
-    "name": "Jack",
-    "age": 24
-  }
-]
+{
+  "users": [
+    {
+      "name": "Jack",
+      "age": 24
+    }
+  ]
+}
 """
 
 
@@ -45,7 +47,7 @@ decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString (JD.list userDecoder) json
+            JD.decodeString (JD.field "users" (JD.list userDecoder)) json
     in
         case result of
             Ok value ->

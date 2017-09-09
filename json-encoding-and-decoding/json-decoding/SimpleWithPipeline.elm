@@ -1,7 +1,8 @@
-module Decoder1 exposing (..)
+module SimpleWithPipeline exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
+import Json.Decode.Pipeline as JP
 
 
 -- INPUT
@@ -37,11 +38,11 @@ type alias User =
 
 userDecoder : JD.Decoder User
 userDecoder =
-    JD.map4 User
-        (JD.field "name" JD.string)
-        (JD.field "age" JD.int)
-        (JD.field "city" JD.string)
-        (JD.field "married" JD.bool)
+    JP.decode User
+        |> JP.required "name" JD.string
+        |> JP.required "age" JD.int
+        |> JP.required "city" JD.string
+        |> JP.required "married" JD.bool
 
 
 decodedValue : String

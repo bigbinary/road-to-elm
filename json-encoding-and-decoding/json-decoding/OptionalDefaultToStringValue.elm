@@ -1,4 +1,4 @@
-module Decoder8 exposing (..)
+module OptionalDefaultToStringValue exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
 import Json.Decode as JD
@@ -65,7 +65,7 @@ jsonC =
 type alias User =
     { name : String
     , age : Int
-    , githubid : Maybe String
+    , githubid : String
     }
 
 
@@ -78,7 +78,7 @@ userDecoder =
     JP.decode User
         |> JP.required "name" JD.string
         |> JP.required "age" JD.int
-        |> JP.optional "githubid" (JD.nullable JD.string) Nothing
+        |> JP.optional "githubid" (JD.oneOf [ JD.string, JD.null "NULL" ]) "MISSING"
 
 
 decodedValue : String -> String
