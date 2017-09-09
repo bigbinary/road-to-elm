@@ -55,12 +55,13 @@ type alias User =
 -- DECODERS
 {-
    Notice the use of 'map4' function in 'userDecoder' below.
-   '4' in 'map4' denotes the number of decoderd it can accept as an argument.
+   '4' in 'map4' denotes the number of decoders it can accept as an argument.
    There are map functions from 'map' to 'map8'.
    It is advised to use 'elm-decode-pipeline' package when we run out of such
    map functions.
 
    If we see the signature of 'map4' function, it looks like this:
+
         map4
             :  (a -> b -> c -> d -> value)
             -> Decoder a
@@ -68,9 +69,10 @@ type alias User =
             -> Decoder c
             -> Decoder d
             -> Decoder value
-   From above signature, the first argument of 'map4' should be a function
+
+   In above signature, the first argument of 'map4' should be a function
    which can accept 4 arguments and return a 'value' which should be of
-   'User' type.
+   'User' type in our case.
    We have provided 'User' alias type as the first argument to 'map4' function.
    This is possible because a record type alias can be called as a function.
    Therefore, a 'User' type alias can be constructed with 4 arguments
