@@ -11,14 +11,12 @@ import Json.Decode.Pipeline as JP
 json : String
 json =
     """
-{
-  "users": [
-    {
-      "name": "Jack",
-      "age": 24
-    }
-  ]
-}
+[
+  {
+    "name": "Jack",
+    "age": 24
+  }
+]
 """
 
 
@@ -47,7 +45,7 @@ decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString (JD.field "users" (JD.list userDecoder)) json
+            JD.decodeString (JD.list userDecoder) json
     in
         case result of
             Ok value ->

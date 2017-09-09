@@ -8,38 +8,20 @@ import Json.Decode.Pipeline as JP
 -- INPUT
 
 
-jsonA : String
-jsonA =
+json : String
+json =
     """
 {
   "github": {
     "users": [
       {
         "name": "Jack",
-        "age": 24,
-        "githubid": "evancz"
+        "age": 24
       }
     ]
   }
 }
-"""
-
-
-jsonB : String
-jsonB =
     """
-{
-  "github": {
-    "users": [
-      {
-        "name": "Jack",
-        "age": 24,
-        "githubid": null
-      }
-    ]
-  }
-}
-"""
 
 
 
@@ -49,7 +31,6 @@ jsonB =
 type alias User =
     { name : String
     , age : Int
-    , githubid : Maybe String
     }
 
 
@@ -62,14 +43,27 @@ userDecoder =
     JP.decode User
         |> JP.required "name" JD.string
         |> JP.required "age" JD.int
-        |> JP.required "githubid" (JD.nullable JD.string)
 
 
-decodedValue : String -> String
-decodedValue json =
+decodedValueUsingAt : String
+decodedValueUsingAt =
     let
         result =
             JD.decodeString (JD.at [ "github", "users" ] (JD.list userDecoder)) json
+    in
+        case result of
+            Ok value ->
+                toString value
+
+            Err error ->
+                error
+
+
+decodedValueUsingField : String
+decodedValueUsingField =
+    let
+        result =
+            JD.decodeString (JD.field "github" (JD.field "users" (JD.list userDecoder))) json
     in
         case result of
             Ok value ->
@@ -86,10 +80,10 @@ decodedValue json =
 main : Html msg
 main =
     div []
-        [ h2 [] [ text "jsonA :: github id is present" ]
-        , pre [] [ text jsonA ]
-        , pre [] [ text (decodedValue jsonA) ]
-        , h2 [] [ text "jsonB :: github id is null" ]
-        , pre [] [ text jsonB ]
-        , pre [] [ text (decodedValue jsonB) ]
+        [ h2 [] [ text "JSON Input" ]
+        , pre [] [ text json ]
+        , h2 [] [ text "Decoded Value using `at`" ]
+        , pre [] [ text decodedValueUsingAt ]
+        , h2 [] [ text "Decoded Value using `field`" ]
+        , pre [] [ text decodedValueUsingField ]
         ]

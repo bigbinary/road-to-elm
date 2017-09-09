@@ -33,22 +33,6 @@ jsonB =
     "users": [
       {
         "name": "Jack",
-        "age": 24
-      }
-    ]
-  }
-}
-"""
-
-
-jsonC : String
-jsonC =
-    """
-{
-  "github": {
-    "users": [
-      {
-        "name": "Jack",
         "age": 24,
         "githubid": null
       }
@@ -65,7 +49,7 @@ jsonC =
 type alias User =
     { name : String
     , age : Int
-    , githubid : String
+    , githubid : Maybe String
     }
 
 
@@ -78,7 +62,7 @@ userDecoder =
     JP.decode User
         |> JP.required "name" JD.string
         |> JP.required "age" JD.int
-        |> JP.optional "githubid" (JD.oneOf [ JD.string, JD.null "NULL" ]) "MISSING"
+        |> JP.required "githubid" (JD.nullable JD.string)
 
 
 decodedValue : String -> String
@@ -102,13 +86,10 @@ decodedValue json =
 main : Html msg
 main =
     div []
-        [ h2 [] [ text "jsonA :: github id is present in json" ]
+        [ h2 [] [ text "jsonA :: github id is present" ]
         , pre [] [ text jsonA ]
         , pre [] [ text (decodedValue jsonA) ]
-        , h2 [] [ text "jsonB :: github id is missing in json" ]
+        , h2 [] [ text "jsonB :: github id is null" ]
         , pre [] [ text jsonB ]
         , pre [] [ text (decodedValue jsonB) ]
-        , h2 [] [ text "jsonC :: github id is null in json" ]
-        , pre [] [ text jsonC ]
-        , pre [] [ text (decodedValue jsonC) ]
         ]

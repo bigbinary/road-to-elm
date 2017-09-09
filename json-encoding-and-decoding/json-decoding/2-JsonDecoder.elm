@@ -11,12 +11,12 @@ import Json.Decode.Pipeline as JP
 json : String
 json =
     """
-[
-  {
-    "name": "Jack",
-    "age": 24
-  }
-]
+{
+  "name": "Jack",
+  "age": 24,
+  "city": "New York",
+  "married": true
+}
 """
 
 
@@ -27,6 +27,8 @@ json =
 type alias User =
     { name : String
     , age : Int
+    , city : String
+    , married : Bool
     }
 
 
@@ -39,13 +41,15 @@ userDecoder =
     JP.decode User
         |> JP.required "name" JD.string
         |> JP.required "age" JD.int
+        |> JP.required "city" JD.string
+        |> JP.required "married" JD.bool
 
 
 decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString (JD.list userDecoder) json
+            JD.decodeString userDecoder json
     in
         case result of
             Ok value ->
