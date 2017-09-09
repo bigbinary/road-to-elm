@@ -1,7 +1,27 @@
-module Simple exposing (..)
+{-
+   In this example, we decode a simple JSON string containing values
+   of simple types such as String, Int and Bool.
+
+   To decode, we rely on 'Json.Decode' module from core package.
+
+   You can check the result of this example on the following link:
+   https://embed.ellie-app.com/4g7XT7TZ6Dma1/1
+-}
+
+
+module Main exposing (..)
 
 import Html exposing (Html, button, div, h2, pre, text)
-import Json.Decode as JD
+import Json.Decode
+    exposing
+        ( Decoder
+        , field
+        , int
+        , string
+        , bool
+        , decodeString
+        , map4
+        )
 
 
 -- INPUT
@@ -33,22 +53,59 @@ type alias User =
 
 
 -- DECODERS
+{-
+   Notice the use of 'map4' function in 'userDecoder' below.
+   '4' in 'map4' denotes the number of decoderd it can accept as an argument.
+   There are map functions from 'map' to 'map8'.
+   It is advised to use 'elm-decode-pipeline' package when we run out of such
+   map functions.
+
+   If we see the signature of 'map4' function, it looks like this:
+        map4
+            :  (a -> b -> c -> d -> value)
+            -> Decoder a
+            -> Decoder b
+            -> Decoder c
+            -> Decoder d
+            -> Decoder value
+   From above signature, the first argument of 'map4' should be a function
+   which can accept 4 arguments and return a 'value' which should be of
+   'User' type.
+   We have provided 'User' alias type as the first argument to 'map4' function.
+   This is possible because a record type alias can be called as a function.
+   Therefore, a 'User' type alias can be constructed with 4 arguments
+   considering it accepts an argument for each field.
+
+   Note that, another version of this example is available using
+   'elm-decode-pipeline' package in "SimpleWithPipeline.elm" file in this
+   directory.
+-}
 
 
-userDecoder : JD.Decoder User
+userDecoder : Decoder User
 userDecoder =
-    JD.map4 User
-        (JD.field "name" JD.string)
-        (JD.field "age" JD.int)
-        (JD.field "city" JD.string)
-        (JD.field "married" JD.bool)
+    map4 User
+        (field "name" string)
+        (field "age" int)
+        (field "city" string)
+        (field "married" bool)
+
+
+
+-- The 'decodedValue' function is just a normal function which we call in our
+-- "main" view function below to display the decoded JSON string.
+--
+-- We use 'Json.Decode.decodeString' function, which accepts
+-- a decoder and the string need to be decoded (i.e. a JSON string).
+-- 'decodeString' function returns a 'Result' off which we can obtain the
+-- decoded value which can either be of type 'User' or an error.
 
 
 decodedValue : String
 decodedValue =
     let
         result =
-            JD.decodeString userDecoder json
+            decodeString userDecoder json
     in
         case result of
             Ok value ->
