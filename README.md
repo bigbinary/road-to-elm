@@ -1,39 +1,27 @@
 # Road to Elm - Examples of Elm code
 
-Visit any directory and execute `elm reactor`
-and then click on the file name to see it in action.
-In some cases you need to install certain elm packages.
-Instructions to install elm package is mentioned below.
+This repository contains working solutions to some problems
+which we encountered while learning Elm.
 
-### Submitting a form in Elm
+## Setup and usage
 
-https://github.com/bigbinary/road-to-elm/tree/master/subitting-a-form
+If you have cloned this repository, you can use `elm reactor` command
+to run any file having `.elm` extension.
+Navigate to any directory and run `elm reactor` command.
+Elm reactor will start a local server listing the `.elm` files in that directory.
+Click on any file to see it in action.
 
-### JSON decoding in Elm
-
-Before running `elm reactor` execute following command.
-
-```
-elm package install NoRedInk/elm-decode-pipeline -y
-```
-
-* [Decoder1](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder1.elm) - decode simple JSON
-* [Decoder2](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder2.elm) - decode simple JSON in an array
-* [Decoder3](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder3.elm) - decode simple JSON in an array inside a key
-* [Decoder4](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder4.elm) - decode JSON using `at` and `field`
-* [Decoder5](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder5.elm) - decode JSON when key has null value
-* [Decoder6](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder6.elm) - decode JSON when once key is present and once when key is missing. Decode to default string.
-* [Decoder7](https://github.com/bigbinary/road-to-elm/blob/master/json-decoding/Decoder7.elm) - decode JSON when once key is present and once when key is missing. Decode to Nothing if key is missing or value is null.
-
-
-### Making http requests in Elm
-
-Before running `elm reactor` execute following command.
+Although `elm reactor` will download the necessary packages on its own
+if not found locally,
+it is good idea to install them explicitly
+with the following command from the root directory.
 
 ```
-elm package install elm-lang/http -y
+elm package install
 ```
 
-* [Show response body](https://github.com/bigbinary/road-to-elm/blob/master/making-http-requests/2ShowResponseBody.elm)
-* [Show full response](https://github.com/bigbinary/road-to-elm/blob/master/making-http-requests/3ShowWholeResponse.elm)
+## Table of contents
 
+* [Working with forms](working-with-forms)
+* [HTTP requests](http-requests)
+* [JSON encoding and decoding](json-encoding-and-decoding)
