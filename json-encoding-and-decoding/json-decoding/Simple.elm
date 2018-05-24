@@ -5,7 +5,7 @@
    To decode, we rely on 'Json.Decode' module from core package.
 
    You can check the result of this example on the following link:
-   https://embed.ellie-app.com/4g7XT7TZ6Dma1/1
+   https://ellie-app.com/jNRZ3vCqJa1/2
 -}
 
 
